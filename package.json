@@ -1,0 +1,106 @@
+{
+  "name": "pangu-cn",
+  "displayName": "中文排版 Pangu CN",
+  "description": "自动在中英文、中文与数字之间补空格，规范中文标点；支持 Markdown、纯文本、LaTeX，跳过代码块与链接。",
+  "version": "1.0.0",
+  "publisher": "pangu-lab",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "中文",
+    "排版",
+    "pangu",
+    "markdown",
+    "空格",
+    "chinese",
+    "spacing"
+  ],
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/milubxaq/vscode-pangu-cn"
+  },
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:panguCn.formatDocument",
+    "onCommand:panguCn.formatSelection",
+    "onCommand:panguCn.toggleOnSave"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "panguCn.formatDocument",
+        "title": "中文排版：格式化当前文档",
+        "category": "Pangu"
+      },
+      {
+        "command": "panguCn.formatSelection",
+        "title": "中文排版：格式化选中内容",
+        "category": "Pangu"
+      },
+      {
+        "command": "panguCn.toggleOnSave",
+        "title": "中文排版：切换保存时自动排版",
+        "category": "Pangu"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "panguCn.formatSelection",
+          "when": "editorHasSelection && !editorReadonly",
+          "group": "1_modification"
+        },
+        {
+          "command": "panguCn.formatDocument",
+          "when": "!editorReadonly",
+          "group": "1_modification"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "中文排版 Pangu",
+      "properties": {
+        "panguCn.enableSpacing": {
+          "type": "boolean",
+          "default": true,
+          "description": "在中英文、中文与阿拉伯数字之间插入空格"
+        },
+        "panguCn.enablePunctuation": {
+          "type": "boolean",
+          "default": false,
+          "description": "把中文语境中的半角逗号、句号等转换为全角标点（较激进，默认关闭）"
+        },
+        "panguCn.formatOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "保存时自动格式化当前文档"
+        },
+        "panguCn.languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "markdown",
+            "plaintext",
+            "restructuredtext",
+            "latex",
+            "html"
+          ],
+          "description": "允许整篇格式化的语言 ID；其他语言建议仅对选区执行，避免改动字符串内容"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test lib/pangu.test.js"
+  }
+}

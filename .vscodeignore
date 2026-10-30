@@ -1,0 +1,8 @@
+.vscode/**
+.gitignore
+**/*.test.js
+**/*.md
+!README.md
+!CHANGELOG.md
+node_modules/**
+*.vsix
