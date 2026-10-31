@@ -1,6 +1,6 @@
 {
   "name": "pangu-cn",
-  "displayName": "中文排版 Pangu CN",
+  "displayName": "中文排版助手",
   "description": "自动在中英文、中文与数字之间补空格，规范中文标点；支持 Markdown、纯文本、LaTeX，跳过代码块与链接。",
   "version": "1.0.0",
   "publisher": "pangu-lab",
